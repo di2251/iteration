@@ -1,0 +1,34 @@
+---
+title: "writing_functions"
+author: "di2251"
+date: "2026-10-29"
+output: github_document
+---
+
+```{r setup}
+library(tidyverse)
+library(rvest)
+library(readxl)
+
+set.seed(1)
+```
+
+### First function
+
+```{r}
+x_vec = rnorm(25, mean = 5, sd = 3)
+
+(x_vec - mean(x_vec)) / sd(x_vec)
+```
+
+```{r}
+z_scores = function(x) {
+  
+  z = (x - mean(x)) / sd(x)
+  z
+  
+}
+
+z_scores(x_vec)
+```
+
