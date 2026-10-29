@@ -32,3 +32,64 @@ z_scores = function(x) {
 z_scores(x_vec)
 ```
 
+```{r}
+z_scores(x_vec)
+z_scores(rpois(4000, lambda = 12))
+
+z_scores(sample(c(TRUE, FALSE), 25, replace = TRUE))
+```
+
+```{r}
+z_scores = function(x) {
+  
+  if (!is.numeric(x)) {
+    stop("Argument x should be numeric")
+  } else if (length(x) == 1) {
+    stop("Z scores cannot be computed for length 1 vectors")
+  }
+  
+  z = mean(x) / sd(x)
+  
+  z
+}
+
+```
+
+### Multiple outputs
+
+```{r}
+mean_and_sd = function(x) {
+  
+  if(!is.numeric(x)) {
+    stop("Argument x should be numeric")
+  } else if (length(x) == 1) {
+    stop("Cannot be computed for length 1 vectors")
+  }
+  
+  mean_x = mean(x)
+  sd_x = sd(x)
+  
+  list(mean = mean_x,
+       sd = sd_x)
+  
+  tibble(
+    mean = mean_x,
+    sd = sd_x
+  )
+}
+```
+
+### Multiple inputs
+
+```{r}
+sim_data = tibble(
+  x = rnorm(30, mean = 2, sd = 3)
+)
+
+sim_data |>
+  summarize(
+    mu_hat = mean(x),
+    sigma_hat = sd(x)
+  )
+```
+
